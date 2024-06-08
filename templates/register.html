@@ -8,18 +8,14 @@
     </head>
     <body>
         <h1>Register Users</h1>
-        <form>
-            <label>Identification</label>
-            <input type="number"/>
+        <form action="/register_user" method="post">
+            <label>Identification</label> <input type="number" name="id"/>
             <br /><br /> 
-            <label>Name</label>
-            <input type="text" />
+            <label>Name</label> <input type="text" name="name" />
             <br /><br /> 
-            <label>Last Name</label>
-            <input type="Text"/>
+            <label>Last Name</label> <input type="Text" name="lastname"/>
             <br /><br /> 
-            <label>birthday</label>
-            <input type="date"/>
+            <label>birthday</label> <input type="date" name="birthday"/>
             <br /><br /> 
             <button onclick="registeruser()">Register</button>
         </form>

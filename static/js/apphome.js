@@ -1,5 +1,5 @@
 function RegisterPage(){
-    alert("Boton de registrar clickeado")
+    window.location ="/register_page"
 }
 
 function ConsultPage (){
