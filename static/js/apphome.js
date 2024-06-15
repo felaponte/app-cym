@@ -3,5 +3,5 @@ function RegisterPage(){
 }
 
 function ConsultPage (){
-    alert("Boton de consultar clickeado")
+    window.location = "/consult_page"
 }
