@@ -16,8 +16,9 @@ def connectionSQL():
         )
         print('succesfull connection to database')
         return connection_sql
-    except:
+    except Exception as err:
         print('Error connecting to database')
+        print (err)
         return None 
 
 def add_user(id, name, lastname, birthday):
@@ -29,7 +30,11 @@ def add_user(id, name, lastname, birthday):
            cursor.execute(instruction_sql)
            connection_sql.commit()
            print("user added")
+           return True
         else:
             print('Error connecting to database')
-    except:
-        print("error creting user")
+            return False
+    except Exception as err:
+        print("Error creating the user")
+        print(err)
+        return False

@@ -16,10 +16,16 @@ def func_register_user():
     lastname = request.form["lastname"]
     birthday = request.form["birthday"]
     print(id, name, lastname, birthday)
-    resultado = add_user(id, name, lastname, birthday)
-    return "ok"
-    
-#@app.route("/consult_user", methods=["post"])    
-#def consult_user():
- #   print(id, name, lastname, birthday)
-  #  return "ok"
+    confirm_user = add_user(id, name, lastname, birthday)
+    if confirm_user:
+        return "<h1>the user was succesfully created</h1>"
+    else:
+        return "<h1>Error: the user was not created</h1>"
+        
+def func_consult_user():
+    print("good")
+    obj_user = request.get_json()
+    id = obj_user["id"]
+    passw = obj_user["passw"] #es solo para una prueba
+    print(id)
+    return "OK"
