@@ -9,4 +9,11 @@ function consult_user() {
         "headers":{"Content-Type":"application/json"},
         "body":JSON.stringify(obj_user)
     })
+    .then(resp => resp.json())
+    .then(data => {
+        alert(data.status)
+    })
+    .catch(err => {
+        alert("Error" + err)
+    })
 }
