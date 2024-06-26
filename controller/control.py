@@ -18,11 +18,10 @@ def func_register_user():
     birthday = request.form["birthday"]
     photo = request.files["photo"]
     confirm_user = add_user(id, name, lastname, birthday)
-    print(photo.name)
     if confirm_user:
         s3_resource = connection_s3()
         photo_path_local = save_file(photo)
-        confirm_photo = upload_file(s3_resource, photo_path_local)
+        confirm_photo = upload_file(s3_resource, photo, photo_path_local, id)
         if confirm_photo:
             return "<h1>the user and the photo were saved</h1>"
         else:

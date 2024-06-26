@@ -20,10 +20,12 @@ def save_file(photo):
         print("Error", err)
         return None
         
-def upload_file(s3_resource, photo_path_local):
+def upload_file(s3_resource, photo, photo_path_local, id):
     try:
         bucket_name = "felasbucket96"
-        photo_pad_s3 = " images/" + "photo.JPG"
+        photo_name = photo.filename
+        extension_photo = photo_name.split(".")[1]
+        photo_pad_s3 = " images/" + id + "." + extension_photo
         bucket_connection = s3_resource.meta.client.upload_file(photo_path_local, bucket_name, photo_pad_s3)
         print("File uploaded")
         return True
