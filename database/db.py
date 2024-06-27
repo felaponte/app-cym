@@ -46,7 +46,7 @@ def consult_user(id):
         cursor = connection_sql.cursor()
         cursor.execute(instruction_sql)
         result_data = cursor.fetchall()
-        return(result_data)
+        return result_data
     except Exception as err:
         print("Error", err)
         return False

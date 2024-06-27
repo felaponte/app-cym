@@ -1,6 +1,6 @@
 from database.db import *
 from flask import render_template, request
-from controller.admin_s3 import connection_s3, save_file, upload_file
+from controller.admin_s3 import connection_s3, save_file, upload_file, consult_file
 
 def func_home_page():
     return render_template("home.html")
@@ -34,12 +34,29 @@ def func_consult_user():
     id = obj_user["id"]
     passw = obj_user["passw"] #es solo para una prueba
     result_data = consult_user(id)
-    response = ""
     if result_data != False and len(result_data) != 0:
-        response = {
-            'status' : "ok",
-            'name' : result_data[0][1]
-        }
+        s3_resource = connection_s3()
+        file_found = consult_file(s3_resource, id)
+        if file_found != None:
+            print(file_found)
+            response = ""
+            response = {
+                'status' : "ok",
+                'id' : id,
+                'name' : result_data[0][1],
+                'lastname' : result_data[0][2],
+                'birthday' : result_data[0][3],
+                'url_photo' : "https://felasbucket96.s3.amazonaws.com/" + file_found
+            }
+        else :
+            response = {
+                'status' : "ok",
+                'id' : id,
+                'name' : result_data[0][1],
+                'lastname' : result_data[0][2],
+                'birthday' : result_data[0][3],
+                'url_photo' : "No photo"
+            }
     else:
         response = {
             'status' : "error"

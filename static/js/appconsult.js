@@ -11,7 +11,8 @@ function consult_user() {
     })
     .then(resp => resp.json())
     .then(data => {
-        alert(data.status)
+        let message = `ID: ${data.id}\nName: ${data.name}\nLastname: ${data.lastname}\nBirthday: ${data.birthday}\nURL photo: ${data.url_photo}`;
+        alert(message);
     })
     .catch(err => {
         alert("Error" + err)
