@@ -11,8 +11,20 @@ function consult_user() {
     })
     .then(resp => resp.json())
     .then(data => {
-        let message = `ID: ${data.id}\nName: ${data.name}\nLastname: ${data.lastname}\nBirthday: ${data.birthday}\nURL photo: ${data.url_photo}`;
-        alert(message);
+        if (data.status == "ok") {
+            document.getElementById("txt-data").value = "ID: " + data.id
+            + "\nName: "+ data.name 
+            + "\nLastname: " + data.lastname 
+            + "\nBirthday: " + data.birthday 
+            + "\nURL photo: " + data.url_photo
+            
+            document.getElementById("image_user").src = data.url_photo
+        }   
+        else {
+            alert("Ususario no encontrado")
+            document.getElementById("txt-data").value = ""
+            document.getElementById("image_user").src = ""
+        }
     })
     .catch(err => {
         alert("Error" + err)

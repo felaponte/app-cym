@@ -38,25 +38,17 @@ def func_consult_user():
         s3_resource = connection_s3()
         file_found = consult_file(s3_resource, id)
         if file_found != None:
-            print(file_found)
-            response = ""
-            response = {
-                'status' : "ok",
-                'id' : id,
-                'name' : result_data[0][1],
-                'lastname' : result_data[0][2],
-                'birthday' : result_data[0][3],
-                'url_photo' : "https://felasbucket96.s3.amazonaws.com/" + file_found
-            }
+            url_file = "https://felasbucket96.s3.amazonaws.com/" + file_found
         else :
-            response = {
-                'status' : "ok",
-                'id' : id,
-                'name' : result_data[0][1],
-                'lastname' : result_data[0][2],
-                'birthday' : result_data[0][3],
-                'url_photo' : "No photo"
-            }
+            url_file = "No photo"
+        response = {
+            'status' : "ok",
+            'id' : id,
+            'name' : result_data[0][1],
+            'lastname' : result_data[0][2],
+            'birthday' : result_data[0][3],
+            'url_photo' : url_file
+        }
     else:
         response = {
             'status' : "error"
